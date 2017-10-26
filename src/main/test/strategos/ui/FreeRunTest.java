@@ -74,7 +74,7 @@ public class FreeRunTest {
 //        model.setMoveRange(moveRange);
         model.setThisInstancePlayer(owner);
 
-        Ui ui = new Ui(model);
+        UI ui = new UI(model);
         ui.revealMap();
         ui.skipMenu();
     }

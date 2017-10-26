@@ -13,5 +13,5 @@ import strategos.networking.Tests;
 //		GridComponentTest.class
 })
 
-public class UiTests {
+public class UITests {
 }

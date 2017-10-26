@@ -12,14 +12,14 @@ import strategos.ui.view.View;
  * Creates the ui.
  * @author Brandon Scott-Hill
  */
-public class Ui {
+public class UI {
 
     private View view = null;
     private Controller controller = null;
     private NetworkingHandler networkingHandler = null;
 
     /**
-     * Instantiates a new Ui.
+     * Instantiates a new UI.
      *
      * @author Brandon Scott-Hill
      * @author Daniel Pinfold
@@ -32,7 +32,7 @@ public class Ui {
      * @param networkingHandler the handler for the network in the
      *                          multiplayer game.
      */
-    public Ui(GameState model, NetworkingHandler networkingHandler) {
+    public UI(GameState model, NetworkingHandler networkingHandler) {
         assert (model != null);
         MapLocation[][] map = model.getWorld().getMap().getData();
         for (int y = 1; y < map.length; y++) {
@@ -52,7 +52,7 @@ public class Ui {
     }
 
     /**
-     * Instantiates a new Ui.
+     * Instantiates a new UI.
      *
      * @author Brandon Scott-Hill
      *
@@ -61,7 +61,7 @@ public class Ui {
      *                 model must not be null<br>
      *                 terrain array lengths must be the same
      */
-    public Ui(GameState model) {
+    public UI(GameState model) {
         assert (model != null);
         MapLocation[][] map = model.getWorld().getMap().getData();
         for (int y = 1; y < map.length; y++) {

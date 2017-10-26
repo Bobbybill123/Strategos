@@ -5,14 +5,14 @@ import org.junit.runners.Suite;
 import strategos.behaviour.BehaviourTests;
 import strategos.mapcreation.MapGenerationTests;
 import strategos.model.AllModelTests;
-import strategos.ui.UiTests;
+import strategos.ui.UITests;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         IntegrationTests.class,
-        UiIntegrationTests.class,
+        UIIntegrationTests.class,
         MapGenerationTests.class,
-        UiTests.class,
+        UITests.class,
         BehaviourTests.class,
         AllModelTests.class
 })

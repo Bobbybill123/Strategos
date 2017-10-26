@@ -2,7 +2,7 @@ import model.*;
 import org.junit.Test;
 import strategos.model.MapLocation;
 import strategos.terrain.Terrain;
-import strategos.ui.Ui;
+import strategos.ui.UI;
 import strategos.units.Unit;
 import terrain.*;
 import units.*;
@@ -16,7 +16,7 @@ public class Tests extends JComponent {
 
     private JFrame frame = new JFrame();
     private String text = "";
-    private Ui ui;
+    private UI ui;
 
     private int screenHeight = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
 
@@ -60,7 +60,7 @@ public class Tests extends JComponent {
         };
         UnitOwnerTestObj owner = new UnitOwnerTestObj();
         setText("You should be able to see a menu");
-        ui = new Ui(setupModel(entities,terrain,owner));
+        ui = new UI(setupModel(entities,terrain,owner));
         ui.disableInput();
         ui.revealMap();
         waitToClose();
@@ -74,7 +74,7 @@ public class Tests extends JComponent {
         };
         UnitOwnerTestObj owner = new UnitOwnerTestObj();
         setText("You should be able to see a hexagon");
-        ui = new Ui(setupModel(entities,terrain,owner));
+        ui = new UI(setupModel(entities,terrain,owner));
         ui.disableInput();
         ui.skipMenu();
         ui.revealMap();
@@ -268,7 +268,7 @@ public class Tests extends JComponent {
         entities.add(e);
         entities.add(s);
         setText("Should able to game view with a of grid hexgons and 4 units");
-        ui = new Ui(setupModel(entities,terrain,owner));
+        ui = new UI(setupModel(entities,terrain,owner));
         ui.skipMenu();
         ui.revealMap();
 
@@ -314,7 +314,7 @@ public class Tests extends JComponent {
         UnitOwnerTestObj owner = new UnitOwnerTestObj();
         setText("Should be able to see river terrain tile");
         ModelTestObj model = setupModel(entities,terrain,owner);
-        ui = new Ui(model);
+        ui = new UI(model);
 
         MapLocation[][] map = new MapLocation[terrain.length][terrain[0].length];
 
@@ -345,7 +345,7 @@ public class Tests extends JComponent {
         };
         setText(text);
         UnitOwnerTestObj owner = new UnitOwnerTestObj();
-        ui = new Ui(setupModel(entities,terrain,owner));
+        ui = new UI(setupModel(entities,terrain,owner));
         ui.disableInput();
         ui.skipMenu();
         ui.revealMap();
@@ -388,7 +388,7 @@ public class Tests extends JComponent {
         unit.setPosition(pos);
         entities.add(unit);
         setText(text);
-        ui = new Ui(setupModel(entities,terrain,uiOwner));
+        ui = new UI(setupModel(entities,terrain,uiOwner));
         ui.disableInput();
         ui.skipMenu();
         ui.revealMap();
@@ -405,7 +405,7 @@ public class Tests extends JComponent {
         unit.setPosition(new MapLocationTestObj(0,0));
         entities.add(unit);
         setText(text);
-        ui = new Ui(setupModel(entities,terrain,uiOwner));
+        ui = new UI(setupModel(entities,terrain,uiOwner));
         ui.disableInput();
         ui.skipMenu();
         ui.revealMap();
@@ -421,7 +421,7 @@ public class Tests extends JComponent {
         unit.setPosition(new MapLocationTestObj(0,0));
         entities.add(unit);
         setText(text);
-        ui = new Ui(setupModel(entities,terrain,null));
+        ui = new UI(setupModel(entities,terrain,null));
         ui.disableInput();
         ui.skipMenu();
         ui.revealMap();

@@ -8,7 +8,7 @@ import strategos.model.GameState;
 import strategos.model.GameStateFactory;
 import strategos.model.StateCreator;
 import strategos.networking.handlers.NetworkingHandlerImpl;
-import strategos.ui.Ui;
+import strategos.ui.UI;
 
 public class GameRunner {
 
@@ -20,7 +20,7 @@ public class GameRunner {
 
 		GameState gameState = stateCreator.createNewState();
 
-		new Ui(gameState, new NetworkingHandlerImpl());
+		new UI(gameState, new NetworkingHandlerImpl());
 	}
 
 	public static void main(String[] args) {

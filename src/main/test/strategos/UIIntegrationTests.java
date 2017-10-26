@@ -2,6 +2,7 @@ package strategos;
 
 import org.junit.Test;
 import strategos.mapcreation.mapgeneration.TerrainGeneration;
+import strategos.ui.UI;
 import strategos.util.Paintable;
 import strategos.behaviour.BehaviourFactoryImpl;
 import strategos.hexgrid.Map;
@@ -9,7 +10,6 @@ import strategos.mapgenerator.Generator;
 import strategos.model.*;
 import strategos.networking.NetworkingHandler;
 import strategos.networking.handlers.NetworkingHandlerImpl;
-import strategos.ui.Ui;
 import strategos.units.Unit;
 
 import javax.swing.*;
@@ -24,17 +24,17 @@ import static strategos.util.Direction.WEST;
  *
  * @author Brandon Scott-Hill
  */
-public class UiIntegrationTests extends JComponent{
+public class UIIntegrationTests extends JComponent{
 
 
     private JFrame frame = new JFrame();
     private String text = "";
-    private Ui ui;
+    private UI ui;
 
     private int screenHeight = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
 
 
-    public UiIntegrationTests() {
+    public UIIntegrationTests() {
         frame.add(this);
         frame.setTitle("Debug View");
         frame.setPreferredSize(new Dimension(800,200));
@@ -48,7 +48,7 @@ public class UiIntegrationTests extends JComponent{
         frame.repaint();
     }
 
-    private void waitToClose(Ui ui, int mill) {
+    private void waitToClose(UI ui, int mill) {
         try {
             Thread.sleep(mill);
         } catch (InterruptedException e) {
@@ -72,7 +72,7 @@ public class UiIntegrationTests extends JComponent{
     public void uiAndMapCreationTest_1() {
         setText("You should able to see a game board with a generated map");
         StateCreator stateCreator = new StateCreator(new BehaviourFactoryImpl(), new TerrainGeneration());
-        Ui ui = new Ui(stateCreator.createNewState(), new NetworkingHandlerImpl());
+        UI ui = new UI(stateCreator.createNewState(), new NetworkingHandlerImpl());
         ui.skipMenu();
         ui.disableInput();
         ui.revealMap();
@@ -88,7 +88,7 @@ public class UiIntegrationTests extends JComponent{
         setText("You should able to see a game board with a unique generated map every time");
         for (int i = 0; i < 20; i++) {
             StateCreator stateCreator = new StateCreator(new BehaviourFactoryImpl(), new TerrainGeneration());
-            Ui ui = setupUI(stateCreator.createNewState(), new NetworkingHandlerImpl());
+            UI ui = setupUI(stateCreator.createNewState(), new NetworkingHandlerImpl());
             waitToClose(ui,1000);
         }
         frame.dispose();
@@ -116,7 +116,7 @@ public class UiIntegrationTests extends JComponent{
             UnitOwner barbarians = new Player(true);
             GameState newState = new Strategos(stateCreator, new World(map, new ArrayList<>()), playerOne, playerTwo, barbarians);
 
-            Ui ui = setupUI(newState, new NetworkingHandlerImpl());
+            UI ui = setupUI(newState, new NetworkingHandlerImpl());
             waitToClose(ui,1000);
         }
         frame.dispose();
@@ -130,7 +130,7 @@ public class UiIntegrationTests extends JComponent{
         setText("You should able to see barbarians move once");
         StateCreator stateCreator = new StateCreator(new BehaviourFactoryImpl(), new TerrainGeneration());
         GameState gameState = stateCreator.createNewState();
-        Ui ui = setupUI(gameState, new NetworkingHandlerImpl());
+        UI ui = setupUI(gameState, new NetworkingHandlerImpl());
 
         try {
             Thread.sleep(500);
@@ -152,7 +152,7 @@ public class UiIntegrationTests extends JComponent{
         setText("You should able to see barbarians swarming");
         StateCreator stateCreator = new StateCreator(new BehaviourFactoryImpl(), new TerrainGeneration());
         GameState gameState = stateCreator.createNewState();
-        Ui ui = setupUI(gameState, new NetworkingHandlerImpl());
+        UI ui = setupUI(gameState, new NetworkingHandlerImpl());
 
         for (int i = 0; i < 20; i++) {
             gameState.nextTurn();
@@ -178,7 +178,7 @@ public class UiIntegrationTests extends JComponent{
         Unit unit = gameState.getPlayers().get(0).getUnits().get(0);
         unit.turnTick();
 
-        Ui ui = setupUI(gameState, new NetworkingHandlerImpl());
+        UI ui = setupUI(gameState, new NetworkingHandlerImpl());
 
         for (int i = 0; i < 3; i++) {
             try {
@@ -215,7 +215,7 @@ public class UiIntegrationTests extends JComponent{
         SaveInstance saveInstance = serverState.export();
         server.send(saveInstance);
 
-        Ui ui = setupUI(clientState, client);
+        UI ui = setupUI(clientState, client);
 
 
         Unit unit = serverState.getPlayers().get(0).getUnits().get(0);
@@ -236,8 +236,8 @@ public class UiIntegrationTests extends JComponent{
     }
 
 
-    private Ui setupUI(GameState gameState, NetworkingHandler networkingHandler) {
-        Ui ui = new Ui(gameState, networkingHandler);
+    private UI setupUI(GameState gameState, NetworkingHandler networkingHandler) {
+        UI ui = new UI(gameState, networkingHandler);
         ui.skipMenu();
         ui.disableInput();
         ui.revealMap();
